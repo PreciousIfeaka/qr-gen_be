@@ -9,7 +9,7 @@ generator client {
 
 model Movie {
   id  String @id @default(uuid())
-  movies Json[]
+  movies Json
   created_at DateTime @default(now())
   deleted_at DateTime
 }

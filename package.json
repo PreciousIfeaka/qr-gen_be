@@ -26,9 +26,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
-    "@nestjs/schedule": "^6.0.0",
     "@prisma/client": "^6.9.0",
-    "@types/node-cron": "^3.0.11",
     "qrcode": "^1.5.4",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"

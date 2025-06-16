@@ -7,13 +7,14 @@ export class QRService {
   private readonly logger = new Logger(QRService.name);
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    private readonly configService: ConfigService
   ) {}
 
   async generateQRCode(): Promise<{ qrCodeUrl: string }> {
     const movie_id = (await this.movieService.saveMovie()).id;
 
-    const movie_link = `http://localhost:5173/movies/${movie_id}`;
+    const movie_link = `${configService.get<string>("FE_URL")}/movies/${movie_id}`;
 
     const qrCodeUrl = await QRCode.toDataURL(movie_link);
 

@@ -6,12 +6,9 @@ export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get(":id")
-  async findOne(@Param("id") id: string) {
+  async findOne(
+    @Param("id") id: string
+  ) {
     return await this.movieService.findMovieById(id);
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.movieService.deleteMovie(id);
   }
 }

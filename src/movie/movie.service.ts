@@ -32,21 +32,19 @@ export class MovieService {
     }
     const page = Math.floor(Math.random() * 500) + 1;
 
-    const moviesResponse$: TmdbAxiosResponse = this.httpService
+    const moviesResponse: TmdbAxiosResponse = this.httpService
       .get<TmdbApiResponseType>(
         `/discover/movie?with_original_language=en&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`
       );
 
     const movies: Movie[] = await lastValueFrom(
-      moviesResponse$.pipe(
+      moviesResponse.pipe(
       map(response => response.data.results.map((result) => ({
           title: result.original_title ?? result.title,
           image_url: `https://image.tmdb.org/t/p/w154${result.poster_path}`
         }))
       )
     ));
-
-    console.log(movies[0].image_url);
 
     const savedMovies: PrismaMovie = await this.prismaService.movie.create({
     data: {
@@ -55,7 +53,8 @@ export class MovieService {
     }
   });
 
-    console.log(savedMovies.id);
+    this.logger.log(`Successfully generated movie list with id: ${savedMovies.id}`);
+    
     return savedMovies;
   }
 

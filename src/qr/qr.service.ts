@@ -15,7 +15,7 @@ export class QRService {
   async generateQRCode(): Promise<{ qrCodeUrl: string }> {
     const movie_id = (await this.movieService.saveMovie()).id;
 
-    const movie_link = `${configService.get<string>("FE_URL")}/movies/${movie_id}`;
+    const movie_link = `${this.configService.get<string>("FE_URL")}/movies/${movie_id}`;
 
     const qrCodeUrl = await QRCode.toDataURL(movie_link);
 

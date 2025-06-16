@@ -1,5 +1,6 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { MovieService } from "../movie/movie.service";
+import { ConfigService } from "@nestjs/config";
 import * as QRCode from 'qrcode';
 
 @Injectable()

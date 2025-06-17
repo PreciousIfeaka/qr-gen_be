@@ -70,6 +70,7 @@ export class MovieService {
     const movie = await this.findMovieById(id);
     await this.prismaService.movie.delete({ where: { id }});
 
+    this.logger.log(`Successfully deleted movie list of id: ${id}`);
     return movie.id;
   }
 }

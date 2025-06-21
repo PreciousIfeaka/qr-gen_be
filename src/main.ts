@@ -10,6 +10,14 @@ const server = express();
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
+
+  app.enableCors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization",
+    credentials: true,
+  });
+  
   await app.init();
   
   if (process.env.VERCEL_ENV === 'development') {

@@ -1,5 +1,13 @@
 {
-  "version": 2,
-  "buildCommand": "pnpm build",
-  "outputDirectory": "dist"
+  "functions": {
+    "src/main.ts": {
+      "runtime": "@vercel/node"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/src/main"
+    }
+  ]
 }
